@@ -27,7 +27,7 @@ def main():
     mqttc = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
     mqttc.on_connect = on_connect
     mqttc.on_message = on_message
-    
+
     mqttc.connect(BROKER_HOST, BROKER_PORT, 60)
     mqttc.loop_forever()
 

@@ -18,20 +18,20 @@ def on_publish(client, userdata, mid, reason_code, properties):
 
 def main():
     unacked_publish = set()
-    
+
     mqttc = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
     mqttc.on_publish = on_publish
     mqttc.user_data_set(unacked_publish)
-    
+
     mqttc.connect(BROKER_HOST, BROKER_PORT, 60)
     mqttc.loop_start()
-    
+
     msg_info = mqttc.publish(TOPIC, 'my message', qos=1)
     unacked_publish.add(msg_info.mid)
 
     msg_info2 = mqttc.publish(TOPIC, 'my message2', qos=1)
     unacked_publish.add(msg_info2.mid)
-    
+
     msg_info3 = mqttc.publish(TOPIC, 'my message3', qos=1)
     unacked_publish.add(msg_info3.mid)
 
