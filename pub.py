@@ -32,6 +32,9 @@ def main():
     msg_info2 = mqttc.publish(TOPIC, 'my message2', qos=1)
     unacked_publish.add(msg_info2.mid)
     
+    msg_info3 = mqttc.publish(TOPIC, 'my message3', qos=1)
+    unacked_publish.add(msg_info3.mid)
+
     while len(unacked_publish):
         time.sleep(0.1)
 
